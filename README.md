@@ -17,10 +17,12 @@ HTTP Header로 전달됩니다.
 ## 진행 과정
 1. 데이터 모델링
    * 전달받은 문서 내 요구 사항을 분석하여 아래와 같이 테이블 모델링을 진행 함
+   * mysql에서 작업하엿음 ddl은 classpath:/schema.sql에 동봉
    * ERD
       
       ![erd](./erd.png)
    
+   * database명은 kakaopay로 생성, 유저명은 kakaopay이후 해당계정에 database 실행권한 부여후 실행
 2. API 기능 명세
    * URL 설계 
    * 요청 데이터 및 응답 데이터 규격 정의
