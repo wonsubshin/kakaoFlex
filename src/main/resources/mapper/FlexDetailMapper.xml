@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kakaopay.flex.flex.dao.FlexDetailMapper">
+
+
+    <select id="selectUnuseOne" parameterType="String" resultType="com.kakaopay.flex.flex.dto.FlexDetailDto">
+        SELECT
+        ID, TOKEN, MONEY
+        FROM FLEX_DETAIL
+        WHERE USER_ID IS NULL AND TOKEN=#{token}
+        LIMIT 1
+    </select>
+
+
+    <select id="selectOneByUserId" parameterType="String" resultType="com.kakaopay.flex.flex.dto.FlexDetailDto">
+        SELECT
+        TOKEN, USER_ID
+        FROM FLEX_DETAIL
+        WHERE USER_ID =#{userId} AND TOKEN=#{token}
+        LIMIT 1
+    </select>
+
+    <select id="findFlexHistory" parameterType="String" resultType="com.kakaopay.flex.flex.dto.FlexDetailDto">
+        SELECT
+        ID, TOKEN, USER_ID, MONEY, UPDATE_TIME
+        FROM FLEX_DETAIL
+        WHERE   TOKEN=#{token} AND USER_ID IS NOT NULL
+    </select>
+
+    <insert id="insertFlexDetailInfo"  parameterType="com.kakaopay.flex.flex.dto.FlexDetailDto">
+        INSERT INTO FLEX_DETAIL (
+        TOKEN, MONEY
+        )
+        VALUES (
+        #{token}, #{money}
+        )
+    </insert>
+
+
+    <update id="updateFlexDetailInfo" parameterType="com.kakaopay.flex.flex.dto.FlexDetailDto">
+        UPDATE FLEX_DETAIL SET
+        UPDATE_TIME=#{updateTime}, USER_ID=#{userId}
+
+        WHERE ID=#{id}
+    </update>
+</mapper>

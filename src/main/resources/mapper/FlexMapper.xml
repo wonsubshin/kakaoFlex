@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kakaopay.flex.flex.dao.FlexMapper">
+
+
+    <select id="selectInfo" parameterType="String" resultType="com.kakaopay.flex.flex.dto.FlexDto">
+        SELECT
+        TOKEN, ROOM_ID, USER_ID, CREATE_TIME, TOTAL_MONEY, PEOPLE
+        FROM FLEX_MASTER
+        WHERE TOKEN = #{token}
+        LIMIT 1
+    </select>
+
+    <insert id="insertFlexInfo"  parameterType="com.kakaopay.flex.flex.dto.FlexDto">
+        INSERT INTO FLEX_MASTER (
+        TOKEN, ROOM_ID, USER_ID, CREATE_TIME, TOTAL_MONEY, PEOPLE
+        )
+        VALUES (
+        #{token}, #{roomId}, #{userId}, #{createTime}, #{totalMoney} , #{people}
+        )
+    </insert>
+</mapper>
